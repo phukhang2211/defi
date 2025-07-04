@@ -37,23 +37,31 @@ git push origin main
 
 ### Step 3: Enable GitHub Pages
 
-You have two options for deployment:
+You have three options for deployment:
 
-#### Option A: GitBook (Recommended - More Features)
+#### Option A: GitBook with Modern Actions (Recommended)
 1. Go to your repository on GitHub
 2. Click on **Settings** tab
-3. Scroll down to **Pages** section
+3. Scroll down to **Pages** section (in left sidebar)
 4. Under **Source**, select **GitHub Actions**
 5. This will use the workflow in `.github/workflows/deploy-book.yml`
 
-#### Option B: Simple Jekyll (Faster - Basic Features)
+#### Option B: GitBook with Traditional Actions (Fallback)
 1. Go to your repository on GitHub
 2. Click on **Settings** tab
-3. Scroll down to **Pages** section
+3. Scroll down to **Pages** section (in left sidebar)
+4. Under **Source**, select **GitHub Actions**
+5. Rename `.github/workflows/deploy-traditional.yml` to `.github/workflows/deploy-book.yml`
+6. This uses a more compatible approach
+
+#### Option C: Simple Jekyll (Faster - Basic Features)
+1. Go to your repository on GitHub
+2. Click on **Settings** tab
+3. Scroll down to **Pages** section (in left sidebar)
 4. Under **Source**, select **GitHub Actions**
 5. This will use the workflow in `.github/workflows/deploy-simple.yml`
 
-**Choose Option A for the full book experience, or Option B for a simpler setup.**
+**Try Option A first. If you get errors, use Option B as a fallback.**
 
 ### Step 4: Configure Repository Settings
 
