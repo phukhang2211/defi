@@ -1,252 +1,168 @@
-# Day 2: Smart Contracts and Solidity Basics
+---
+layout: day
+title: Solidity Basics - Day 2
+day: 2
+date: 2024-01-02
+---
 
-## 🎯 Learning Objective
-Understand smart contracts and learn the fundamentals of Solidity programming language.
+# Solidity Basics - Day 2
 
-## ⏰ Time Estimate
-5-6 hours
+## 🎯 Today's Learning Objectives
 
-## 📋 Tasks
+- Understand Solidity syntax and structure
+- Learn about data types and variables
+- Create your first ERC-20 token contract
+- Understand gas optimization basics
 
-### Task 1: Understanding Smart Contracts (1 hour)
-**What to do:**
-- Read Module 1 section on Smart Contracts
-- Watch: "Smart Contracts" by Finematics (10 min)
-- Compare smart contracts to Odoo modules
+## 📚 Solidity Fundamentals
 
-**Resources:**
-- [Finematics: Smart Contracts](https://www.youtube.com/watch?v=ZE2HxTmxfrI)
-- [Ethereum.org: Smart Contracts](https://ethereum.org/en/developers/docs/smart-contracts/)
+### Basic Contract Structure
 
-**Key Concepts to Understand:**
-- Smart contracts are programs that run on blockchain
-- They are immutable once deployed
-- They can hold and transfer value
-- They execute automatically when conditions are met
-
-**Success Criteria:**
-- [ ] Can explain what a smart contract is
-- [ ] Understand the difference between smart contracts and traditional software
-- [ ] Know why smart contracts are "trustless"
-
-### Task 2: Solidity Syntax Basics (1.5 hours)
-**What to do:**
-- Learn basic Solidity syntax
-- Understand data types
-- Practice with simple examples
-
-**Create file: `contracts/SolidityBasics.sol`**
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract SolidityBasics {
-    // State variables (like Odoo model fields)
+contract MyFirstContract {
+    // State variables
     string public name;
-    uint256 public age;
-    bool public isActive;
-    address public owner;
+    uint256 public value;
     
-    // Events (like Odoo logging)
-    event PersonAdded(string name, uint256 age);
-    event StatusChanged(bool newStatus);
-    
-    // Constructor (like Odoo __init__)
-    constructor() {
-        owner = msg.sender;
-        name = "Default";
-        age = 0;
-        isActive = false;
-    }
-    
-    // Function modifiers (like Odoo security rules)
-    modifier onlyOwner() {
-        require(msg.sender == owner, "Not the owner");
-        _;
-    }
-    
-    // Functions (like Odoo methods)
-    function addPerson(string memory _name, uint256 _age) public {
+    // Constructor
+    constructor(string memory _name) {
         name = _name;
-        age = _age;
-        isActive = true;
-        
-        emit PersonAdded(_name, _age);
+        value = 0;
     }
     
-    function toggleStatus() public onlyOwner {
-        isActive = !isActive;
-        emit StatusChanged(isActive);
+    // Functions
+    function setValue(uint256 _newValue) public {
+        value = _newValue;
     }
     
-    // View function (like Odoo computed field)
-    function getPersonInfo() public view returns (string memory, uint256, bool) {
-        return (name, age, isActive);
+    function getValue() public view returns (uint256) {
+        return value;
     }
 }
 ```
 
-**Success Criteria:**
-- [ ] Understand basic data types (string, uint256, bool, address)
-- [ ] Know how to declare state variables
-- [ ] Understand function modifiers
-- [ ] Know how to emit events
+### Key Concepts
 
-### Task 3: Practice with Remix IDE (1 hour)
-**What to do:**
-- Go to [remix.ethereum.org](https://remix.ethereum.org)
-- Create a new file called `Practice.sol`
-- Copy and paste the SolidityBasics contract
-- Compile and deploy it
-- Test all functions
+**Data Types**:
+- `uint256`: Unsigned integer (0 to 2^256-1)
+- `int256`: Signed integer
+- `bool`: Boolean (true/false)
+- `address`: Ethereum address (20 bytes)
+- `string`: Dynamic string
+- `bytes`: Dynamic byte array
 
-**Steps in Remix:**
-1. Create new file: `Practice.sol`
-2. Paste the contract code
-3. Compile (Ctrl+S or click Compile)
-4. Deploy to JavaScript VM
-5. Test each function:
-   - Call `addPerson` with your name and age
-   - Call `getPersonInfo` to see the result
-   - Try `toggleStatus` (should fail if not owner)
-   - Switch accounts and try `toggleStatus` again
+**Function Types**:
+- `public`: Can be called externally and internally
+- `private`: Only callable within the contract
+- `internal`: Callable within contract and inherited contracts
+- `external`: Only callable externally
+- `view`: Read-only function (no state changes)
+- `pure`: No state reads or writes
 
-**Success Criteria:**
-- [ ] Contract compiles without errors in Remix
-- [ ] Can deploy contract successfully
-- [ ] Can call functions and see results
-- [ ] Understand why some functions fail with different accounts
+## 🛠️ Your First ERC-20 Token
 
-### Task 4: Understanding Gas and Transactions (1 hour)
-**What to do:**
-- Learn about gas fees and transaction costs
-- Understand the difference between view and state-changing functions
-- Practice gas estimation
+Create `contracts/MyToken.sol`:
 
-**Key Concepts:**
-- **Gas**: Unit of computational work
-- **Gas Price**: Price per unit of gas (in wei)
-- **Transaction Cost**: Gas used × Gas price
-- **View Functions**: Free to call, don't change state
-- **State Functions**: Cost gas, change blockchain state
-
-**Experiment in Remix:**
-1. Deploy your contract
-2. Call `getPersonInfo()` (view function) - notice no gas cost
-3. Call `addPerson()` (state function) - notice gas cost
-4. Try different gas prices and see the difference
-
-**Success Criteria:**
-- [ ] Understand what gas is and why it's needed
-- [ ] Know the difference between view and state functions
-- [ ] Can estimate gas costs for simple operations
-
-### Task 5: Build a Simple Calculator Contract (1 hour)
-**What to do:**
-- Create a calculator contract with basic operations
-- Practice with different data types and functions
-
-**Create file: `contracts/Calculator.sol`**
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract Calculator {
-    uint256 public lastResult;
-    uint256 public operationCount;
-    
-    event Calculation(uint256 a, uint256 b, string operation, uint256 result);
-    
-    function add(uint256 a, uint256 b) public returns (uint256) {
-        uint256 result = a + b;
-        lastResult = result;
-        operationCount++;
-        
-        emit Calculation(a, b, "add", result);
-        return result;
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract MyToken is ERC20, Ownable {
+    constructor(string memory name, string memory symbol) 
+        ERC20(name, symbol) 
+        Ownable(msg.sender) 
+    {
+        _mint(msg.sender, 1000000 * 10 ** decimals());
     }
     
-    function subtract(uint256 a, uint256 b) public returns (uint256) {
-        require(a >= b, "Cannot subtract larger number from smaller");
-        
-        uint256 result = a - b;
-        lastResult = result;
-        operationCount++;
-        
-        emit Calculation(a, b, "subtract", result);
-        return result;
+    function mint(address to, uint256 amount) public onlyOwner {
+        _mint(to, amount);
     }
     
-    function multiply(uint256 a, uint256 b) public returns (uint256) {
-        uint256 result = a * b;
-        lastResult = result;
-        operationCount++;
-        
-        emit Calculation(a, b, "multiply", result);
-        return result;
-    }
-    
-    function divide(uint256 a, uint256 b) public returns (uint256) {
-        require(b != 0, "Cannot divide by zero");
-        
-        uint256 result = a / b;
-        lastResult = result;
-        operationCount++;
-        
-        emit Calculation(a, b, "divide", result);
-        return result;
-    }
-    
-    function getStats() public view returns (uint256, uint256) {
-        return (lastResult, operationCount);
+    function burn(uint256 amount) public {
+        _burn(msg.sender, amount);
     }
 }
 ```
 
-**Test the Calculator:**
-1. Deploy in Remix
-2. Test each operation with different numbers
-3. Check the events tab to see emitted events
-4. Call `getStats()` to see the last result and operation count
+## 🧪 Testing Your Token
 
-**Success Criteria:**
-- [ ] Calculator contract works correctly
-- [ ] Can perform all basic operations
-- [ ] Events are emitted properly
-- [ ] Error handling works (division by zero, subtraction)
+Create `test/MyToken.test.js`:
 
-### Task 6: Compare with Odoo (30 minutes)
-**What to do:**
-- Think about how this compares to Odoo development
-- Write down similarities and differences
+```javascript
+const { expect } = require("chai");
 
-**Comparison Exercise:**
-| Odoo Concept | Solidity Equivalent | Similarities | Differences |
-|-------------|-------------------|-------------|-------------|
-| Model Fields | State Variables | Store data | Immutable once set |
-| Methods | Functions | Business logic | Gas costs |
-| Security Rules | Modifiers | Access control | More restrictive |
-| Computed Fields | View Functions | Read-only data | Free to call |
-| Logging | Events | Track changes | Stored on blockchain |
+describe("MyToken", function () {
+  let MyToken, myToken, owner, addr1, addr2;
 
-**Success Criteria:**
-- [ ] Can identify at least 5 similarities between Odoo and Solidity
-- [ ] Understand key differences in deployment and execution
-- [ ] See how your Odoo experience translates to smart contracts
+  beforeEach(async function () {
+    MyToken = await ethers.getContractFactory("MyToken");
+    [owner, addr1, addr2] = await ethers.getSigners();
+    myToken = await MyToken.deploy("MyToken", "MTK");
+    await myToken.deployed();
+  });
 
-## 📚 Additional Resources
-- [Solidity Documentation](https://docs.soliditylang.org/)
-- [CryptoZombies Tutorial](https://cryptozombies.io/) (interactive Solidity learning)
-- [Remix IDE Documentation](https://remix-ide.readthedocs.io/)
+  it("Should have correct name and symbol", async function () {
+    expect(await myToken.name()).to.equal("MyToken");
+    expect(await myToken.symbol()).to.equal("MTK");
+  });
 
-## 🎯 Reflection Questions
-1. How does Solidity's immutability compare to Odoo's module updates?
-2. What challenges do you see in debugging smart contracts vs Odoo modules?
-3. How might gas costs affect your development approach?
+  it("Should assign initial balance to owner", async function () {
+    const ownerBalance = await myToken.balanceOf(owner.address);
+    expect(await myToken.totalSupply()).to.equal(ownerBalance);
+  });
 
-## 📝 Notes Section
-Use this space to write down important concepts, questions, and insights from today's learning:
+  it("Should allow minting by owner", async function () {
+    await myToken.mint(addr1.address, 1000);
+    expect(await myToken.balanceOf(addr1.address)).to.equal(1000);
+  });
+});
+```
+
+## 🚀 Deploy and Test
+
+```bash
+# Install OpenZeppelin contracts
+npm install @openzeppelin/contracts
+
+# Compile contracts
+npx hardhat compile
+
+# Run tests
+npx hardhat test
+
+# Deploy to local network
+npx hardhat run scripts/deploy.js --network localhost
+```
+
+## 📝 Success Criteria
+
+- [ ] Understand basic Solidity syntax
+- [ ] Create and deploy ERC-20 token
+- [ ] Write comprehensive tests
+- [ ] Understand gas optimization basics
+- [ ] Complete token minting and burning functions
+
+## 🔗 Odoo Comparison
+
+| **Odoo Concept** | **Solidity Equivalent** |
+|------------------|------------------------|
+| Model Fields | State Variables |
+| Model Methods | Contract Functions |
+| Computed Fields | View/Pure Functions |
+| Constraints | Modifiers |
+| Inheritance | Contract Inheritance |
+
+## 🎯 Tomorrow's Preview
+
+Tomorrow we'll explore DeFi fundamentals and build a simple AMM (Automated Market Maker).
 
 ---
 
-**Tomorrow**: Day 3 - ERC-20 Tokens and Your First Token Contract 
+**💡 Pro Tip**: Use Remix IDE (remix.ethereum.org) for quick Solidity testing and debugging! 

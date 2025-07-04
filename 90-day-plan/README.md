@@ -1,3 +1,8 @@
+---
+layout: default
+title: 90-Day DeFi Transition Action Plan
+---
+
 # 90-Day DeFi Transition Action Plan
 
 ## 🎯 Overview

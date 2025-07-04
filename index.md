@@ -31,7 +31,7 @@ As an Odoo developer, you already have strong foundations in business logic, dat
 
 ## 🚀 Start Your Journey
 
-**[Begin with Day 1: Welcome to DeFi →](90-day-plan/month-1/day-01)**
+**[Begin with Day 1: Welcome to DeFi →](/defi/90-day-plan/month-1/day-01)**
 
 ## 📚 What You'll Build
 
@@ -87,10 +87,10 @@ Your Odoo experience translates perfectly to DeFi:
 
 ## 🔗 Quick Navigation
 
-- **[90-Day Action Plan](90-day-plan/README.md)**
-- **[Setup Guide](GITHUB_SETUP.md)**
-- **[Career Transition Guide](career-transition-guide.md)**
+- **[90-Day Action Plan](/defi/90-day-plan/)**
+- **[Setup Guide](/defi/GITHUB_SETUP.html)**
+- **[Career Transition Guide](/defi/career-transition-guide.html)**
 
 ---
 
-**Ready to transform your career? [Start with Day 1](90-day-plan/month-1/day-01) and begin your DeFi journey!** 
+**Ready to transform your career? [Start with Day 1](/defi/90-day-plan/month-1/day-01) and begin your DeFi journey!** 
