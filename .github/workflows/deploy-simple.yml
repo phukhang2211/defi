@@ -1,8 +1,9 @@
-name: Deploy Book to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -20,26 +21,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Install GitBook
-        run: |
-          npm install -g gitbook-cli
-          gitbook install
-
-      - name: Build with GitBook
-        run: gitbook build
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './_book'
+          path: './_site'
 
   deploy:
     environment:

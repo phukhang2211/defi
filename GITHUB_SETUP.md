@@ -37,11 +37,23 @@ git push origin main
 
 ### Step 3: Enable GitHub Pages
 
+You have two options for deployment:
+
+#### Option A: GitBook (Recommended - More Features)
 1. Go to your repository on GitHub
 2. Click on **Settings** tab
 3. Scroll down to **Pages** section
 4. Under **Source**, select **GitHub Actions**
-5. This will use the workflow we created in `.github/workflows/deploy-book.yml`
+5. This will use the workflow in `.github/workflows/deploy-book.yml`
+
+#### Option B: Simple Jekyll (Faster - Basic Features)
+1. Go to your repository on GitHub
+2. Click on **Settings** tab
+3. Scroll down to **Pages** section
+4. Under **Source**, select **GitHub Actions**
+5. This will use the workflow in `.github/workflows/deploy-simple.yml`
+
+**Choose Option A for the full book experience, or Option B for a simpler setup.**
 
 ### Step 4: Configure Repository Settings
 
@@ -214,6 +226,13 @@ Track your book's success:
 2. **Missing chapters**: Verify SUMMARY.md links
 3. **Styling issues**: Check CSS file syntax
 4. **Deployment fails**: Ensure repository is public
+5. **Node.js cache errors**: Use the updated workflow files
+
+### Workflow Issues
+
+If you get errors like "Dependencies lock file is not found":
+- Use the updated `.github/workflows/deploy-book.yml` file
+- Or switch to the simple Jekyll workflow: `.github/workflows/deploy-simple.yml`
 
 ### Getting Help
 - Check [GitBook documentation](https://toolchain.gitbook.com/)
