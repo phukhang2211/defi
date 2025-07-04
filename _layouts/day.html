@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+<div class="day-content">
+    <div class="day-header">
+        <h1>{{ page.title }}</h1>
+        <p class="day-meta">Day {{ page.day }} of 90 | {{ page.date | date: "%B %d, %Y" }}</p>
+    </div>
+    
+    {{ content }}
+    
+    <div class="day-navigation">
+        {% if page.previous %}
+            <a href="{{ page.previous.url }}" class="prev-day">← Previous Day</a>
+        {% endif %}
+        {% if page.next %}
+            <a href="{{ page.next.url }}" class="next-day">Next Day →</a>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+.day-header { margin-bottom: 30px; }
+.day-meta { color: #666; font-style: italic; }
+.day-navigation { margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee; }
+.day-navigation a { margin-right: 15px; text-decoration: none; color: #007bff; }
+</style> 

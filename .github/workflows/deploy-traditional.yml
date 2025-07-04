@@ -14,11 +14,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: "16"
 
       - name: Install GitBook
         run: |
-          npm install -g gitbook-cli
+          npm install -g gitbook-cli@2.3.2
           gitbook install
 
       - name: Build with GitBook

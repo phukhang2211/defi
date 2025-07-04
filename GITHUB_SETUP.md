@@ -37,16 +37,16 @@ git push origin main
 
 ### Step 3: Enable GitHub Pages
 
-You have three options for deployment:
+You have several options for deployment. **Due to GitBook CLI compatibility issues, I recommend starting with Option C:**
 
-#### Option A: GitBook with Modern Actions (Recommended)
+#### Option A: GitBook with Node 16 (Try if you want GitBook features)
 1. Go to your repository on GitHub
 2. Click on **Settings** tab
 3. Scroll down to **Pages** section (in left sidebar)
 4. Under **Source**, select **GitHub Actions**
 5. This will use the workflow in `.github/workflows/deploy-book.yml`
 
-#### Option B: GitBook with Traditional Actions (Fallback)
+#### Option B: GitBook with Traditional Actions (Alternative GitBook)
 1. Go to your repository on GitHub
 2. Click on **Settings** tab
 3. Scroll down to **Pages** section (in left sidebar)
@@ -54,14 +54,15 @@ You have three options for deployment:
 5. Rename `.github/workflows/deploy-traditional.yml` to `.github/workflows/deploy-book.yml`
 6. This uses a more compatible approach
 
-#### Option C: Simple Jekyll (Faster - Basic Features)
+#### Option C: Simple Jekyll (Recommended - Most Reliable)
 1. Go to your repository on GitHub
 2. Click on **Settings** tab
 3. Scroll down to **Pages** section (in left sidebar)
 4. Under **Source**, select **GitHub Actions**
-5. This will use the workflow in `.github/workflows/deploy-simple.yml`
+5. Rename `.github/workflows/deploy-jekyll.yml` to `.github/workflows/deploy-book.yml`
+6. This is the most reliable option
 
-**Try Option A first. If you get errors, use Option B as a fallback.**
+**Start with Option C for the most reliable deployment.**
 
 ### Step 4: Configure Repository Settings
 

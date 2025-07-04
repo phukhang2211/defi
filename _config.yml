@@ -1,9 +1,9 @@
 title: DeFi Learning Guide for Odoo Developers
-description: A comprehensive 90-day action plan to transition from Odoo development to DeFi professional
+description: A comprehensive 90-day action plan to transition from Odoo development to DeFi
 author: DeFi Learning Team
 email: your-email@example.com
-url: "https://yourusername.github.io/defi-learning-guide"
-baseurl: ""
+baseurl: "/defi" # the subpath of your site, e.g. /blog
+url: "https://yourusername.github.io" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
@@ -43,6 +43,20 @@ exclude:
 # Include
 include:
   - _pages
+  - _posts
+  - _drafts
+  - _layouts
+  - _includes
+  - _sass
+  - _config.yml
+  - README.md
+  - SUMMARY.md
+  - 90-day-plan
+  - career-transition-guide.md
+  - GITHUB_SETUP.md
+  - contracts
+  - tests
+  - scripts
 
 # Kramdown
 kramdown:
