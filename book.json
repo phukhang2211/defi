@@ -1,0 +1,54 @@
+{
+  "title": "DeFi Learning Guide for Odoo Developers",
+  "description": "A comprehensive 90-day action plan to transition from Odoo development to DeFi professional",
+  "author": "DeFi Learning Team",
+  "language": "en",
+  "structure": {
+    "readme": "README.md",
+    "summary": "90-day-plan/SUMMARY.md"
+  },
+  "plugins": [
+    "expandable-chapters",
+    "copy-code-button",
+    "search",
+    "back-to-top-button",
+    "theme-default",
+    "highlight",
+    "sharing",
+    "fontsettings"
+  ],
+  "pluginsConfig": {
+    "expandable-chapters": {},
+    "copy-code-button": {
+      "buttonText": "Copy",
+      "buttonClass": "btn-copy",
+      "buttonSuccessText": "Copied!"
+    },
+    "search": {
+      "maxIndexSize": 100000,
+      "ignoreCase": true,
+      "maxSearchResults": 20
+    },
+    "sharing": {
+      "facebook": true,
+      "twitter": true,
+      "google": false,
+      "weibo": false,
+      "instapaper": false,
+      "vk": false,
+      "all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+    },
+    "fontsettings": {
+      "theme": "white",
+      "family": "sans",
+      "size": 2
+    }
+  },
+  "styles": {
+    "website": "styles/website.css",
+    "ebook": "styles/ebook.css",
+    "pdf": "styles/pdf.css",
+    "mobi": "styles/mobi.css",
+    "epub": "styles/epub.css"
+  }
+} 

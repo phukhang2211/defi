@@ -1,0 +1,36 @@
+{
+  "name": "defi-learning-guide",
+  "version": "1.0.0",
+  "description": "A comprehensive 90-day action plan to transition from Odoo development to DeFi professional",
+  "main": "index.js",
+  "scripts": {
+    "build": "gitbook build",
+    "serve": "gitbook serve",
+    "install-deps": "gitbook install",
+    "pdf": "gitbook pdf",
+    "epub": "gitbook epub",
+    "mobi": "gitbook mobi"
+  },
+  "keywords": [
+    "defi",
+    "blockchain",
+    "solidity",
+    "ethereum",
+    "learning",
+    "odoo",
+    "career-transition"
+  ],
+  "author": "DeFi Learning Team",
+  "license": "MIT",
+  "devDependencies": {
+    "gitbook-cli": "^2.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/defi-learning-guide.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/defi-learning-guide/issues"
+  },
+  "homepage": "https://yourusername.github.io/defi-learning-guide"
+} 

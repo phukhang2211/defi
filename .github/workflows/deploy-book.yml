@@ -1,0 +1,38 @@
+name: Deploy Book to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+        cache: 'npm'
+
+    - name: Install GitBook CLI
+      run: npm install -g gitbook-cli
+
+    - name: Install GitBook Dependencies
+      run: |
+        gitbook install
+        npm install
+
+    - name: Build Book
+      run: gitbook build
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_book
+        cname: your-domain.com  # Optional: Add your custom domain 
