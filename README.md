@@ -6,7 +6,7 @@ Welcome to your DeFi (Decentralized Finance) learning journey! As an Odoo develo
 - **Business Logic**: Understanding complex financial workflows
 - **Database Management**: Handling transactions and data integrity
 - **API Development**: Building integrations and services
-- **Team Leadership**: Managing development processes
+- **Module Development**: Building reusable components and systems
 
 This guide will help you leverage these skills while learning blockchain and DeFi concepts through a structured 90-day action plan.
 
