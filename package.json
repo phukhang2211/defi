@@ -4,12 +4,7 @@
   "description": "A comprehensive 90-day action plan to transition from Odoo development to DeFi professional",
   "main": "index.js",
   "scripts": {
-    "build": "gitbook build",
-    "serve": "gitbook serve",
-    "install-deps": "gitbook install",
-    "pdf": "gitbook pdf",
-    "epub": "gitbook epub",
-    "mobi": "gitbook mobi"
+    "build": "echo 'Add your static site generator build command here'"
   },
   "keywords": [
     "defi",
@@ -22,9 +17,6 @@
   ],
   "author": "DeFi Learning Team",
   "license": "MIT",
-  "devDependencies": {
-    "gitbook-cli": "^2.3.2"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/yourusername/defi-learning-guide.git"
